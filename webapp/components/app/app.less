@@ -1,0 +1,49 @@
+.jaz-site {
+	position: relative;
+	padding-top: 52px; /* Account for fixed navbar */
+}
+
+.padding-top-25 {
+	padding-top: 25px;
+}
+
+.padding-left-5 {
+	padding-left: 5px;
+}
+
+.padding-right-5 {
+	padding-right: 5px;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.nav, .pagination, .carousel, .panel-title a { 
+	cursor: pointer; 
+}
+
+.position-relative {
+	position: relative;
+}
+
+.full-stretch {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.background-linear-gradient(@gradient-color) {
+	background-image: -webkit-linear-gradient(lighten(@gradient-color, 20%), @gradient-color 50%,darken(@gradient-color, 15%));
+	background-image:    -moz-linear-gradient(lighten(@gradient-color, 20%), @gradient-color 50%,darken(@gradient-color, 15%));
+	background-image:         -o-linear-gradient(lighten(@gradient-color, 20%), @gradient-color 50%,darken(@gradient-color, 15%));
+	background-image:             linear-gradient(lighten(@gradient-color, 20%), @gradient-color 50%,darken(@gradient-color, 15%));
+}
+
+.box-shadow(@size, @color) {
+	-webkit-box-shadow: 0 0 @size @color;
+	   -moz-box-shadow: 0 0 @size @color;
+	            box-shadow: 0 0 @size @color;
+}

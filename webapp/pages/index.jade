@@ -1,0 +1,12 @@
+doctype
+html(ng-app="webapp")
+	head
+		include partials/header.jade
+		include partials/includes.jade
+		include partials/includes-app.jade
+	body.jaz-site
+		navigation-header
+		section.main-view(ui-view autoscroll='false')
+		.copyright-disclaimer
+			h6 Copyright © 2013-4 Jaz Singh. All rights reserved.
+			h6 Site developed by Jaz Singh
