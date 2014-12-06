@@ -1,17 +1,16 @@
 skills = {}
 
 skills["Java"] =
-	experience: [
+	experience: 
 		2008: 10
 		2009: 30
 		2010: 60
 		2012: 85
 		2013: 90
 		2014: 85
-	]
 
 skills["c++"] =
-	experience: [
+	experience: 
 		1996: 10
 		1998: 20
 		2000: 30
@@ -23,10 +22,9 @@ skills["c++"] =
 		2010: 85
 		2012: 80
 		2014: 75
-	]
 
 skills["VC++"] =
-	experience: [
+	experience: 
 		1996: 10
 		1998: 20
 		2000: 30
@@ -36,89 +34,77 @@ skills["VC++"] =
 		2006: 70
 		2008: 70
 		2010: 50
-	]
 
 skills["EcmaScript/JavaScript"] =
-	experience: [
+	experience: 
 		2010: 10
 		2012: 30
 		2013: 60
 		2014: 85
-	]
 
 skills["CoffeeScript"] =
-	experience: [
+	experience:
 		2010: 10
 		2012: 30
 		2013: 60
 		2014: 85
-	]
 
 skills["AngularJS"] =
-	experience: [
+	experience: 
 		2010: 10
 		2012: 30
 		2013: 60
 		2014: 85
-	]
 
 skills["D3.js"] =
-	experience: [
+	experience: 
 		2010: 10
 		2012: 30
 		2013: 60
 		2014: 85
-	]
 
 skills["Jade/HTML5/Less/CSS"] =
-	experience: [
+	experience: 
 		2010: 10
 		2012: 30
 		2013: 60
 		2014: 80
-	]
 
 skills["REST/WebSockets"] =
-	experience: [
+	experience: 
 		2010: 10
 		2012: 30
 		2013: 60
 		2014: 80
-	]
 
 skills["Node.js"] =
-	experience: [
+	experience: 
 		2013: 20
 		2014: 40
-	]
 
 skills["Meteor"] =
-	experience: [
+	experience: 
 		2014: 30
-	]
 
 skills["Mongo"] = 
-	experience: [
+	experience: 
 		2014: 20
-	]
 
 skills["MySQL"] =
-	experience: [
+	experience: 
 		2008: 10
 		2009: 30
 		2010: 50
 		2011: 40
-	]
 
 skills["Postgresql"] =
-	experience: [
+	experience: 
 		2012: 10
 		2013: 40
 		2014: 60
-	]
 
 skills["Linux"] =
-	experience: [
+	experience: 
 		2000: 10
 		2001: 20
 		2002: 50
@@ -128,17 +114,15 @@ skills["Linux"] =
 		2010: 85
 		2012: 90
 		2014: 90
-	]
 
 skills["Python"] =
-	experience: [
+	experience: 
 		2012: 15
 		2013: 25
 		2014: 40
-	]
 
 skills["Bugzilla"] =
-	experience: [
+	experience: 
 		2002: 10
 		2003: 20
 		2004: 50
@@ -146,10 +130,9 @@ skills["Bugzilla"] =
 		2006: 70
 		2008: 75
 		2009: 60
-	]
 
 skills["Atlassian Suite (Jira, etc)"] =
-	experience: [
+	experience: 
 		2008: 10
 		2009: 30
 		2010: 60
@@ -157,26 +140,23 @@ skills["Atlassian Suite (Jira, etc)"] =
 		2012: 75
 		2013: 85
 		2014: 85
-	]
 
 skills["Visual Source Safe"] =
-	experience: [
+	experience: 
 		1998: 10
 		2000: 30
 		2002: 40
 		2004: 50
 		2006: 40
-	]
 
 skills["cvs"] =
-	experience: [
+	experience: 
 		2004: 10
 		2006: 30
 		2007: 30
-	]
 
 skills["subversion (svn)"] =
-	experience: [
+	experience: 
 		2007: 10
 		2008: 30
 		2009: 50
@@ -184,24 +164,20 @@ skills["subversion (svn)"] =
 		2011: 70
 		2013: 75
 		2014: 75
-	]
 
 skills["git/github"] =
-	experience: [
-		2012: 10
+	experience: 
 		2013: 20
 		2014: 20
-	]
 
 skills["Agile/Kanban"] =
-	experience: [
+	experience: 
 		2009: 10
 		2010: 35
 		2011: 60
 		2012: 75
 		2013: 85
 		2014: 90
-	]
 
 angular.module("about-me").directive("aboutMe"
 ->
@@ -209,5 +185,54 @@ angular.module("about-me").directive("aboutMe"
 		restrict: "E"
 		replace: true
 		templateUrl: "about-me/about-me.html"
+		compile: (element, attributes) ->
+			experiences = []
+			for skillName, skill of skills
+				for year, skillLevel of skill.experience
+					experiences.push({
+						skillName
+						year
+						skillLevel
+					})
+			skillsData = crossfilter(experiences)
+			skillsData.groupAll()
+			skillNameDimension = skillsData.dimension( (experience) ->
+				experience.skillName
+			)
+			skillYearDimension = skillsData.dimension( (experience) ->
+				experience.year
+			)
+			skillLevelDimension = skillsData.dimension( (experience) ->
+				experience.skillLevel
+			)
+			skillNameGroup = skillNameDimension.group().reduceCount()
+			skillLevelGroup = skillLevelDimension.group()
+			skillNameGroupSum = skillNameGroup.reduceSum( (experience) -> experience.skillLevel)
+			
+			skillsPieChart = dc.pieChart('#skills-pie-chart')
+			skillsPieChart
+				.width(200)
+				.height(200)
+				.dimension(skillNameDimension)
+				.group(skillNameGroup)
+				.transitionDuration(500)
+			skillsLineChart = dc.lineChart('#skills-chart')
+			skillsLineChart
+				.width(700)
+				.height(250)
+				.margins( top: 10, right: 50, bottom: 30, left: 40)
+				.dimension(skillYearDimension)
+				.group(skillNameGroup)
+				.valueAccessor( (experience) ->
+					experience.skillLevel
+				)
+				#.centerBar(true)
+				#.gap(1)
+				.x(d3.scale.linear().domain([1998, 2015]))
+				.transitionDuration(500)
+				.elasticY(true)
+			#for skillName in #TODO Jaz Singh
+			#	.stack(skillNameGroupSum, ')
+			dc.renderAll()
 	}
 )
