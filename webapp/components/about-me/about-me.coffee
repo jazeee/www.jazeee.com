@@ -279,14 +279,17 @@ angular.module("about-me").directive("aboutMe"
 		compile: (element, attributes) ->
 			skills = Skills.getSkills()
 			yearExtent = d3.extent(skills, (skill) -> skill.year)
-			yearExtent[0] = Math.min(2000, yearExtent[0])
+			yearExtent[0] = Math.max(2000, yearExtent[0])
+			latestYear = yearExtent[1]
 			skillsCrossFilter = crossfilter(skills)
 			typeDimension = skillsCrossFilter.dimension((skill)->skill.type)
 			typeDimension.filter("Language")
 			skillsNameDimension = skillsCrossFilter.dimension( (skill) ->
 				skill.skillName
 			)
-			skillsNameGroup = skillsNameDimension.group().reduceSum( (skill) -> skill.skillLevel)
+			skillsNameGroup = skillsNameDimension.group().reduceSum( (skill) ->
+				return Math.max(0.5, (skill.year - (latestYear - 6))) * skill.skillLevel
+			)
 			skillsYearDimension = skillsCrossFilter.dimension((skill)->
 				[skill.skillName, skill.year]
 			)
@@ -303,7 +306,10 @@ angular.module("about-me").directive("aboutMe"
 				.group(skillsNameGroup)
 				.transitionDuration(500)
 				.colors( (skill) ->
-						colorScale(skill)
+					colorScale(skill)
+				)
+				.title( (skill) ->
+					skill.key
 				)
 			skillsSeriesChart = dc.seriesChart('#skills-series-chart')
 				.width(700)
