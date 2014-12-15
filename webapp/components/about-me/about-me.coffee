@@ -1,4 +1,15 @@
-angular.module("about-me").constant("SkillsData"
+colors = ["Chocolate", "red","green","blue","purple", "orange", "maroon",
+		  "CornflowerBlue", "coral"
+		  "hsl(21,55%,35%)", "hsl(130,53%,48%)", "hsl(190,86%,43%)"
+]
+
+for i in [0..25]
+	colors.push("hsl(#{i*10}, 85%, 40%)")
+for i in [0..25]
+	colors.push("hsl(#{i*10 + 5}, 65%, 70%)")
+
+
+angular.module("about-me").constant("SkillData"
 	"Java": 
 		type: "Language"
 		experience:
@@ -213,24 +224,34 @@ angular.module("about-me").constant("SkillsData"
 )
 
 angular.module("about-me").service("Skills"
-(SkillsData) ->
+(SkillData) ->
 	class Skills
 		constructor: ->
-		
-		getSkillsData: (skillType) ->
+			@skillTypes = _.pluck(_.values(SkillData), "type")
+			@skillTypes = _.union(["Language", "Library", "Environment", "Database", "Protocol", "Utility"], @skillTypes)
+			@skillTypes = _.unique(@skillTypes)
+			@skillNames = _.keys(SkillData).sort()
+			@skillIndex = {}
+			@skillColors = {}
+			for skillName, index in @skillNames
+				@skillColors[skillName] = colors[index % colors.length]
+				@skillIndex[skillName] = index
+
+		getSkillData: (skillType) ->
 			if skillType?
-				return _.pick(SkillsData, (skill)->
+				return _.pick(SkillData, (skill)->
 					skill.type == skillType
 				)
 			else
-				return SkillsData
+				return SkillData
 		
 		getSkillNames: (skillType)->
-			_.keys(@getSkillsData(skillType))
+			_.keys(@getSkillData(skillType))
 			
 		getSkills: (skillType) ->
 			skills = []
-			for skillName, skill of SkillsData
+			index = 0
+			for skillName, skill of SkillData
 				{type} = skill
 				if !skillType? || skillType == type
 					for year, skillLevel of skill.experience
@@ -239,32 +260,41 @@ angular.module("about-me").service("Skills"
 							year
 							skillLevel
 							type
+							index
 						})
+						index++
 			skills
 	return new Skills()
 )
 
 angular.module("about-me").directive("aboutMe"
 (Skills)->
+	skillsCrossFilter = {}
+	typeDimension = {}
 	return {
 		restrict: "E"
 		replace: true
 		templateUrl: "about-me/about-me.html"
+		scope: {}
 		compile: (element, attributes) ->
-			experiences = Skills.getSkills("Language")
-			skillsCrossFilter = crossfilter(experiences)
-			skillsNameDimension = skillsCrossFilter.dimension( (experience) ->
-				experience.skillName
+			skills = Skills.getSkills()
+			yearExtent = d3.extent(skills, (skill) -> skill.year)
+			yearExtent[0] = Math.min(2000, yearExtent[0])
+			skillsCrossFilter = crossfilter(skills)
+			typeDimension = skillsCrossFilter.dimension((skill)->skill.type)
+			typeDimension.filter("Language")
+			skillsNameDimension = skillsCrossFilter.dimension( (skill) ->
+				skill.skillName
 			)
-			skillsNameGroup = skillsNameDimension.group()
-			skillsNameGroupSum = skillsNameGroup.reduceSum( (experience) -> experience.skillLevel)
+			skillsNameGroup = skillsNameDimension.group().reduceSum( (skill) -> skill.skillLevel)
 			skillsYearDimension = skillsCrossFilter.dimension((skill)->
-				[skill.year, skill.skillName]
+				[skill.skillName, skill.year]
 			)
 			skillsGroup = skillsYearDimension.group().reduceSum((skill)->
 				skill.skillLevel
 			)
 			
+			colorScale = d3.scale.ordinal().domain(Skills.skillNames).range(colors)
 			skillsPieChart = dc.pieChart('#skills-pie-chart')
 			skillsPieChart
 				.width(400)
@@ -272,37 +302,49 @@ angular.module("about-me").directive("aboutMe"
 				.dimension(skillsNameDimension)
 				.group(skillsNameGroup)
 				.transitionDuration(500)
+				.colors( (skill) ->
+						colorScale(skill)
+				)
 			skillsSeriesChart = dc.seriesChart('#skills-series-chart')
 				.width(700)
 				.height(300)
 				.chart( (chart) ->
 					dc.lineChart(chart).interpolate('basis')
-				).x(d3.scale.linear().domain([1996, 2015]))
+				)
+				.x(d3.scale.linear().domain(yearExtent))
+				.y(d3.scale.linear().domain([0,100]))
 				.brushOn(false)
-				.elasticY(true)
+				.elasticY(false)
 				.clipPadding(10)
 				.yAxisLabel("Relative Skill Level")
 				.dimension(skillsYearDimension)
 				.group(skillsGroup)
 				.seriesAccessor((skill) ->
-					skill.key[1]
-				).keyAccessor( (skill)-> skill.key[0])
-				.valueAccessor((skill)-> skill.value)
-				.legend(
-					dc.legend()
-						.x(350)
-						.y(350)
-						.itemHeight(13)
-						.gap(5)
-						.horizontal(1)
-						.legendWidth(140)
-						.itemWidth(70)
+					skill.key[0]
 				)
+				.keyAccessor( (skill)-> skill.key[1])
+				.valueAccessor((skill)-> skill.value)
+				.colors( (skill, i) ->
+						colorScale(skill)
+				)
+				.renderTitle(true)
+				.title((skill)->skill.key[0])
 			skillsSeriesChart.xAxis().tickFormat(
 				(year) ->
 					d3.format('d')(year)
 			)
 
 			dc.renderAll()
+			
+			return (scope, element, attributes) ->
+				scope.activeSkillType = "Language"
+				typeDimension.filter(scope.activeSkillType)
+				scope.skillTypes = Skills.skillTypes
+				
+				scope.setActiveSkillType = (skillType) ->
+					scope.activeSkillType = skillType
+					dc.filterAll()
+					typeDimension.filter(skillType)
+					dc.renderAll()
 	}
 )
