@@ -1,6 +1,5 @@
-colors = ["Chocolate", "red","green","blue","purple", "orange", "maroon",
+colors = ["Chocolate", "red","darkgreen","blue","purple", "orange", "maroon",
 		  "CornflowerBlue", "coral"
-		  "hsl(21,55%,35%)", "hsl(130,53%,48%)", "hsl(190,86%,43%)"
 ]
 
 for i in [0..25]
@@ -17,9 +16,18 @@ angular.module("about-me").constant("SkillData"
 			2008: 10
 			2009: 30
 			2010: 60
+			2011: 75
 			2012: 85
 			2013: 90
 			2014: 85
+	"Spring":
+		type: "Library"
+		experience:
+			2009: 0
+			2010: 30
+			2012: 40
+			2013: 50
+			2014: 50
 	"c++":
 		type: "Language"
 		experience:
@@ -31,10 +39,20 @@ angular.module("about-me").constant("SkillData"
 			2002: 50
 			2004: 70
 			2006: 85
-			2008: 85
 			2010: 85
 			2012: 80
 			2014: 75
+	"STL":
+		type: "Library"
+		experience:
+			2002: 0
+			2003: 20
+			2004: 50
+			2006: 70
+			2008: 70
+			2010: 60
+			2012: 50
+			2014: 40
 	"VC++":
 		type: "Language"
 		experience: 
@@ -71,12 +89,26 @@ angular.module("about-me").constant("SkillData"
 			2012: 0
 			2013: 60
 			2014: 85
+	"Bootstrap":
+		type: "Library"
+		experience: 
+			2012: 0
+			2013: 60
+			2014: 85
 	"D3.js":
 		type: "Library"
 		experience: 
 			2012: 0
 			2013: 60
 			2014: 75
+	"JQuery":
+		type: "Library"
+		experience: 
+			2010: 0
+			2011: 20
+			2012: 30
+			2013: 40
+			2014: 50
 	"Jade/HTML5/Less/CSS":
 		type: "Language"
 		experience:
@@ -85,26 +117,17 @@ angular.module("about-me").constant("SkillData"
 			2008: 20
 			2010: 20
 			2012: 30
-			2013: 40
-			2014: 60
-	"REST/WebSockets":
-		type: "Protocol"
-		experience:
-			2008: 0
-			2009: 10
-			2010: 20
-			2012: 40
-			2013: 60
-			2014: 80
+			2013: 50
+			2014: 75
 	"Node.js":
-		type: "Environment"
+		type: "Library"
 		experience:
 			2011: 0
 			2012: 10
 			2013: 20
 			2014: 40
-	"Meteor":
-		type: "Environment"
+	"Meteor.js":
+		type: "Library"
 		experience:
 			2013: 0
 			2014: 40
@@ -131,6 +154,22 @@ angular.module("about-me").constant("SkillData"
 			2011: 10
 			2013: 40
 			2014: 60
+	"Windows":
+		type: "Environment"
+		experience:
+			1992: 0
+			1995: 20
+			1997: 40
+			1998: 60
+			2000: 70
+			2001: 70
+			2002: 70
+			2004: 70
+			2006: 70
+			2008: 70
+			2010: 70
+			2012: 60
+			2014: 50
 	"Linux":
 		type: "Environment"
 		experience:
@@ -228,7 +267,7 @@ angular.module("about-me").service("Skills"
 	class Skills
 		constructor: ->
 			@skillTypes = _.pluck(_.values(SkillData), "type")
-			@skillTypes = _.union(["Language", "Library", "Environment", "Database", "Protocol", "Utility"], @skillTypes)
+			@skillTypes = _.union(["Language", "Library", "Environment", "Database", "Utility"], @skillTypes)
 			@skillTypes = _.unique(@skillTypes)
 			@skillNames = _.keys(SkillData).sort()
 			@skillIndex = {}
@@ -337,6 +376,7 @@ angular.module("about-me").directive("skillSet"
 				)
 				.renderTitle(true)
 				.title((skill)->skill.key[0])
+				.renderHorizontalGridLines(true)
 			skillsSeriesChart.xAxis().tickFormat(
 				(year) ->
 					d3.format('d')(year)
