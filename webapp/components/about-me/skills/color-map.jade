@@ -1,0 +1,9 @@
+div(
+	ng-controller="Colors"
+)
+	.col-sm-1(
+		ng-repeat="color in colors"
+		ng-style="{background: color}"
+		style="height: 3em;"
+	)
+		| {{color}}
