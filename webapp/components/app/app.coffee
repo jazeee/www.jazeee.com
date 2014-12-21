@@ -11,7 +11,7 @@ angular.module('webapp', [
 	#'site'
 	#'banner'
 	#'common'
-	#'navigation'
+	'navigation'
 	#'art'
 	#'galleries'
 	#'art-piece-detail'
