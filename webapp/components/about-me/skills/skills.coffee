@@ -1,12 +1,23 @@
-colors = ["Chocolate", "red","darkgreen","blue","purple", "orange", "maroon",
-		  "CornflowerBlue", "coral"
+namedColors = ["Chocolate", "red","darkgreen","blue","purple", "orange", "maroon",
+		  "CornflowerBlue", "coral", "aqua", "darkgoldenrod", "lightgreen"
 ]
 
-for i in [0..25]
-	colors.push("hsl(#{i*10}, 85%, 40%)")
-for i in [0..25]
-	colors.push("hsl(#{i*10 + 5}, 65%, 70%)")
+colors = []
 
+for a in [0..5]
+	for b in [0, 1]
+		colors.push(namedColors[a*2 + b])
+		i = a * 20
+		if b == 1
+			i = 120 + i
+		colors.push("hsl(#{i}, 85%, 30%)")
+		colors.push("hsl(#{i + 8}, 75%, 15%)")
+		colors.push("hsl(#{i + 15}, 95%, 45%)")
+
+angular.module("about-me").controller("Colors"
+($scope)->
+	$scope.colors = colors
+)
 
 angular.module("about-me").constant("SkillData"
 	"Java": 
@@ -20,6 +31,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 85
 			2013: 90
 			2014: 85
+		domains: ["WebApp", "Server", "Android"]
 	"Spring":
 		type: "Library"
 		experience:
@@ -28,6 +40,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 40
 			2013: 50
 			2014: 50
+		domains: ["Server"]
 	"c++":
 		type: "Language"
 		experience:
@@ -42,6 +55,7 @@ angular.module("about-me").constant("SkillData"
 			2010: 85
 			2012: 80
 			2014: 75
+		domains: ["Utility"]
 	"STL":
 		type: "Library"
 		experience:
@@ -53,6 +67,7 @@ angular.module("about-me").constant("SkillData"
 			2010: 60
 			2012: 50
 			2014: 40
+		domains: ["Utility"]
 	"VC++":
 		type: "Language"
 		experience: 
@@ -68,6 +83,7 @@ angular.module("about-me").constant("SkillData"
 			2010: 50
 			2011: 30
 			2013: 0
+		domains: ["Windows"]
 	"EcmaScript/JavaScript":
 		type: "Language"
 		experience: 
@@ -77,30 +93,35 @@ angular.module("about-me").constant("SkillData"
 			2012: 30
 			2013: 60
 			2014: 85
+		domains: ["WebApp", "Server"]
 	"CoffeeScript":
 		type: "Language"
 		experience:
 			2012: 0
 			2013: 60
 			2014: 85
+		domains: ["WebApp", "Server"]
 	"AngularJS":
 		type: "Library"
 		experience: 
 			2012: 0
 			2013: 60
-			2014: 85
+			2014: 80
+		domains: ["WebApp"]
 	"Bootstrap":
 		type: "Library"
 		experience: 
 			2012: 0
-			2013: 60
-			2014: 85
+			2013: 55
+			2014: 80
+		domains: ["WebApp"]
 	"D3.js":
 		type: "Library"
 		experience: 
 			2012: 0
 			2013: 60
 			2014: 75
+		domains: ["WebApp"]
 	"JQuery":
 		type: "Library"
 		experience: 
@@ -109,6 +130,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 30
 			2013: 40
 			2014: 50
+		domains: ["WebApp"]
 	"Jade/HTML5/Less/CSS":
 		type: "Language"
 		experience:
@@ -119,6 +141,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 30
 			2013: 50
 			2014: 75
+		domains: ["WebApp"]
 	"Node.js":
 		type: "Library"
 		experience:
@@ -126,17 +149,20 @@ angular.module("about-me").constant("SkillData"
 			2012: 10
 			2013: 20
 			2014: 40
+		domains: ["WebApp", "Server"]
 	"Meteor.js":
 		type: "Library"
 		experience:
 			2013: 0
 			2014: 40
+		domains: ["WebApp", "Server"]
 	"Mongo": 
 		type: "Database"
 		experience:
 			2012: 0
 			2013: 10
 			2014: 20
+		domains: ["Server"]
 	"MySQL":
 		type: "Database"
 		experience:
@@ -147,6 +173,7 @@ angular.module("about-me").constant("SkillData"
 			2011: 50
 			2013: 50
 			2014: 50
+		domains: ["Server"]
 	"Postgresql":
 		type: "Database"
 		experience:
@@ -154,6 +181,7 @@ angular.module("about-me").constant("SkillData"
 			2011: 10
 			2013: 40
 			2014: 60
+		domains: ["Server"]
 	"Windows":
 		type: "Environment"
 		experience:
@@ -170,6 +198,7 @@ angular.module("about-me").constant("SkillData"
 			2010: 70
 			2012: 60
 			2014: 50
+		domains: ["Windows"]
 	"Linux":
 		type: "Environment"
 		experience:
@@ -183,6 +212,7 @@ angular.module("about-me").constant("SkillData"
 			2010: 85
 			2012: 90
 			2014: 90
+		domains: ["Server", "Linux"]
 	"Python":
 		type: "Language"
 		experience:
@@ -190,6 +220,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 15
 			2013: 25
 			2014: 40
+		domains: ["Server", "Utility"]
 	"Bugzilla":
 		type: "Utility"
 		experience:
@@ -202,6 +233,7 @@ angular.module("about-me").constant("SkillData"
 			2008: 75
 			2009: 60
 			2014: 50
+		domains: ["Process"]
 	"Atlassian Suite (Jira, etc)":
 		type: "Utility"
 		experience:
@@ -213,6 +245,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 75
 			2013: 85
 			2014: 85
+		domains: ["Process"]
 	"Visual Source Safe":
 		type: "Utility"
 		experience:
@@ -224,6 +257,7 @@ angular.module("about-me").constant("SkillData"
 			2006: 40
 			2007: 20
 			2008: 0
+		domains: ["Process"]
 	"cvs":
 		type: "Utility"
 		experience:
@@ -232,6 +266,7 @@ angular.module("about-me").constant("SkillData"
 			2006: 30
 			2007: 30
 			2008: 0
+		domains: ["Process"]
 	"subversion (svn)":
 		type: "Utility"
 		experience:
@@ -243,6 +278,7 @@ angular.module("about-me").constant("SkillData"
 			2011: 70
 			2013: 75
 			2014: 75
+		domains: ["Process"]
 	"git/github":
 		type: "Utility"
 		experience:
@@ -250,6 +286,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 10
 			2013: 20
 			2014: 30
+		domains: ["Process"]
 	"Agile/Kanban":
 		type: "Utility"
 		experience:
@@ -260,15 +297,29 @@ angular.module("about-me").constant("SkillData"
 			2012: 75
 			2013: 85
 			2014: 90
+		domains: ["Process"]
 )
 
 angular.module("about-me").service("Skills"
 (SkillData) ->
 	class Skills
 		constructor: ->
+			@data = []
+			latestYear = 2000
+			for name, skill of SkillData
+				@data.push(_.extend({}, {name}, skill))
+				latestYear = _(_.keys(skill.experience)).chain()
+					.map((year) -> +year)
+					.reduce((memo, year) ->
+						Math.max(memo, year)
+					latestYear)
+					.value()
+			@latestYear = latestYear
 			@skillTypes = _.pluck(_.values(SkillData), "type")
 			@skillTypes = _.union(["Language", "Library", "Environment", "Database", "Utility"], @skillTypes)
 			@skillTypes = _.unique(@skillTypes)
+			@skillDomains = _.pluck(_.values(SkillData), "domains")
+			@skillDomains = _.unique(_.flatten(@skillDomains))
 			@skillNames = _.keys(SkillData).sort()
 			@skillIndex = {}
 			@skillColors = {}
@@ -286,6 +337,22 @@ angular.module("about-me").service("Skills"
 		
 		getSkillNames: (skillType)->
 			_.keys(@getSkillData(skillType))
+		
+		getSkillYearScore: (year, skillLevel) =>
+			return Math.max(0.5, (year - (@latestYear - 6))) * skillLevel
+		
+		getSkillScore: (skill) =>
+			score = 0
+			for year, skillLevel of skill.experience
+				score += @getSkillYearScore(year, skillLevel)
+			score
+		
+		getDomainSkills: (skillDomain) =>
+			skills = _.filter(@data, (skill)->
+				_.contains(skill.domains, skillDomain)
+			)
+			skills = _.sortBy(skills, @getSkillScore)
+			skills.reverse()
 			
 		getSkills: (skillType) ->
 			skills = []
@@ -304,6 +371,13 @@ angular.module("about-me").service("Skills"
 						index++
 			skills
 	return new Skills()
+)
+
+angular.module("about-me").controller("SkillsController"
+($scope, Skills)->
+	$scope.domainSkillNames = {}
+	for skillDomain in Skills.skillDomains
+		$scope.domainSkillNames[skillDomain] = _.pluck(Skills.getDomainSkills(skillDomain), "name")
 )
 
 angular.module("about-me").directive("skillSet"
@@ -328,8 +402,8 @@ angular.module("about-me").directive("skillSet"
 			skillsNameDimension = skillsCrossFilter.dimension( (skill) ->
 				skill.skillName
 			)
-			skillsNameGroup = skillsNameDimension.group().reduceSum( (skill) ->
-				return Math.max(0.5, (skill.year - (latestYear - 6))) * skill.skillLevel
+			skillsNameGroup = skillsNameDimension.group().reduceSum((skill) ->
+				Skills.getSkillYearScore(skill.year, skill.skillLevel)
 			)
 			skillsYearDimension = skillsCrossFilter.dimension((skill)->
 				[skill.skillName, skill.year]

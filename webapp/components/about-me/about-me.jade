@@ -1,2 +1,10 @@
 .about-me
+	.about-jaz-header-block
+		.row
+			.skills-header-overlay
+				h1 Jaz Singh
+				h2 Full Stack Web Developer
+				ul(ng-controller="SkillsController")
+					li(ng-repeat='skillName in domainSkillNames["WebApp"]')
+						| {{skillName}}
 	skill-set
