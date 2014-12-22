@@ -84,7 +84,7 @@ angular.module("about-me").constant("SkillData"
 			2011: 30
 			2013: 0
 		domains: ["Windows"]
-	"EcmaScript/JavaScript":
+	"JavaScript":
 		type: "Language"
 		experience: 
 			2005: 0
@@ -101,6 +101,13 @@ angular.module("about-me").constant("SkillData"
 			2013: 60
 			2014: 85
 		domains: ["WebApp", "Server"]
+	"Jade/Less":
+		type: "Language"
+		experience:
+			2012: 0
+			2013: 60
+			2014: 100
+		domains: ["WebApp"]
 	"AngularJS":
 		type: "Library"
 		experience: 
@@ -131,7 +138,7 @@ angular.module("about-me").constant("SkillData"
 			2013: 40
 			2014: 50
 		domains: ["WebApp"]
-	"Jade/HTML5/Less/CSS":
+	"HTML/CSS":
 		type: "Language"
 		experience:
 			2005: 0
@@ -457,6 +464,7 @@ angular.module("about-me").directive("skillSet"
 			)
 			
 			resizeCharts = ->
+				console.log $(pieChartSelector).width()
 				skillsPieChart
 					.width($(pieChartSelector).width())
 					.height($(pieChartSelector).height())
@@ -472,9 +480,16 @@ angular.module("about-me").directive("skillSet"
 				scope.activeSkillType = "Language"
 				typeDimension.filter(scope.activeSkillType)
 				scope.skillTypes = Skills.skillTypes
+				updateActiveSkillsAndLevels = ->
+					scope.activeSkillNames = Skills.getSkillNames(scope.activeSkillType)
+					scope.skillFontColor = {}
+					for skillName in scope.activeSkillNames
+						scope.skillFontColor[skillName] = Skills.skillColors[skillName]
+				updateActiveSkillsAndLevels()
 				
 				scope.setActiveSkillType = (skillType) ->
 					scope.activeSkillType = skillType
+					updateActiveSkillsAndLevels()
 					dc.filterAll()
 					typeDimension.filter(skillType)
 					dc.renderAll()

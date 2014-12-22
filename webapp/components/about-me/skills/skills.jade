@@ -12,7 +12,17 @@
 		.col-md-6.col-xs-12
 			h2 Weighted Skills
 			p Larger wedges indicate strong current skills
-			#skills-pie-chart.skill-chart-area
+			.row
+				.col-xs-3.skill-name-panels
+					.skill-name-panel(
+						ng-repeat="activeSkillName in activeSkillNames"
+						ng-style="{color: skillFontColor[activeSkillName]}"
+					)
+						p
+							| {{activeSkillName}}
+							i.fa.fa-square
+				.col-xs-9
+					#skills-pie-chart.skill-chart-area
 		.col-md-6.col-xs-12
 			h2 Relative Skill Level
 			p My assessment of skill level when compared to peers
