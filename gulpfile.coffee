@@ -8,6 +8,7 @@ try
 	glob = require('glob')
 	commandLineArguments = require('yargs').argv
 	gulpFilter = require('gulp-filter')
+	_ = require('underscore')
 	gulpif = require('gulp-if')
 	{
 		util
@@ -41,11 +42,18 @@ paths =
 		"webapp/components/**/_module.coffee"
 		"webapp/components/**/*.coffee"
 	]
-	
+	js: [
+		"webapp/js/jquery.min.js"
+		"webapp/js/angular.min.js"
+		"webapp/js/d3.min.js"
+		"webapp/js/crossfilter.min.js"
+		"webapp/js/*"
+	]
 	dest: "website"
 	destPages: "website"
 	destTemplates: "website/templates"
 	destCoffee: "website/components"
+	destJs: "website/js"
 	destLess: "website/css"
 	
 getPath = (pathId) ->
@@ -75,7 +83,6 @@ compileCoffee = ->
 compileJade = ->
 	logErrors(jade({pretty: true}))
 	
-
 compileLess = ->
 	logErrors(less())
 
@@ -116,6 +123,12 @@ task "less", ->
 		.pipe(concat('app.css'))
 		.pipe(dest('destLess'))
 		.pipe(livereload({auto: false}))
+
+task "js", ->
+	src('js')
+		.pipe(plumber())
+		.pipe(concat('static.js'))
+		.pipe(dest('destJs'))
 		
 task "start-web-server", ->
 	webServerConfig = ecstatic(
@@ -142,6 +155,7 @@ task 'development', ->
 		'coffee'
 		'less'
 		'watch'
+		'js'
 	)
 
 task "default", ['development']
