@@ -31,6 +31,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 85
 			2013: 90
 			2014: 85
+			2015: 85
 		domains: ["WebApp", "Server", "Android"]
 	"Spring":
 		type: "Library"
@@ -40,6 +41,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 40
 			2013: 50
 			2014: 50
+			2015: 60
 		domains: ["Server"]
 	"c++":
 		type: "Language"
@@ -55,6 +57,7 @@ angular.module("about-me").constant("SkillData"
 			2010: 85
 			2012: 80
 			2014: 75
+			2015: 70
 		domains: ["Utility"]
 	"STL":
 		type: "Library"
@@ -67,6 +70,7 @@ angular.module("about-me").constant("SkillData"
 			2010: 60
 			2012: 50
 			2014: 40
+			2015: 40
 		domains: ["Utility"]
 	"VC++":
 		type: "Language"
@@ -93,6 +97,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 30
 			2013: 60
 			2014: 85
+			2015: 90
 		domains: ["WebApp", "Server"]
 	"CoffeeScript":
 		type: "Language"
@@ -100,6 +105,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 0
 			2013: 60
 			2014: 85
+			2015: 95
 		domains: ["WebApp", "Server"]
 	"Jade/Less":
 		type: "Language"
@@ -107,6 +113,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 0
 			2013: 60
 			2014: 100
+			2015: 100
 		domains: ["WebApp"]
 	"AngularJS":
 		type: "Library"
@@ -114,6 +121,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 0
 			2013: 60
 			2014: 80
+			2015: 80
 		domains: ["WebApp"]
 	"Bootstrap":
 		type: "Library"
@@ -121,6 +129,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 0
 			2013: 55
 			2014: 80
+			2015: 85
 		domains: ["WebApp"]
 	"D3.js":
 		type: "Library"
@@ -128,6 +137,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 0
 			2013: 60
 			2014: 75
+			2015: 80
 		domains: ["WebApp"]
 	"JQuery":
 		type: "Library"
@@ -137,6 +147,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 30
 			2013: 40
 			2014: 50
+			2015: 70
 		domains: ["WebApp"]
 	"HTML/CSS":
 		type: "Language"
@@ -148,6 +159,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 30
 			2013: 50
 			2014: 75
+			2015: 85
 		domains: ["WebApp"]
 	"Node.js":
 		type: "Library"
@@ -156,12 +168,14 @@ angular.module("about-me").constant("SkillData"
 			2012: 10
 			2013: 20
 			2014: 40
+			2015: 60
 		domains: ["WebApp", "Server"]
 	"Meteor.js":
 		type: "Library"
 		experience:
 			2013: 0
 			2014: 40
+			2015: 70
 		domains: ["WebApp", "Server"]
 	"Mongo": 
 		type: "Database"
@@ -169,6 +183,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 0
 			2013: 10
 			2014: 20
+			2015: 45
 		domains: ["Server"]
 	"MySQL":
 		type: "Database"
@@ -180,6 +195,7 @@ angular.module("about-me").constant("SkillData"
 			2011: 50
 			2013: 50
 			2014: 50
+			2015: 50
 		domains: ["Server"]
 	"Postgresql":
 		type: "Database"
@@ -188,6 +204,7 @@ angular.module("about-me").constant("SkillData"
 			2011: 10
 			2013: 40
 			2014: 60
+			2015: 70
 		domains: ["Server"]
 	"Windows":
 		type: "Environment"
@@ -205,6 +222,7 @@ angular.module("about-me").constant("SkillData"
 			2010: 70
 			2012: 60
 			2014: 50
+			2015: 45
 		domains: ["Windows"]
 	"Linux":
 		type: "Environment"
@@ -219,6 +237,7 @@ angular.module("about-me").constant("SkillData"
 			2010: 85
 			2012: 90
 			2014: 90
+			2015: 90
 		domains: ["Server", "Linux"]
 	"Python":
 		type: "Language"
@@ -227,6 +246,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 15
 			2013: 25
 			2014: 40
+			2015: 50
 		domains: ["Server", "Utility"]
 	"Bugzilla":
 		type: "Utility"
@@ -240,6 +260,7 @@ angular.module("about-me").constant("SkillData"
 			2008: 75
 			2009: 60
 			2014: 50
+			2015: 25
 		domains: ["Process"]
 	"Atlassian Suite (Jira, etc)":
 		type: "Utility"
@@ -252,6 +273,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 75
 			2013: 85
 			2014: 85
+			2015: 85
 		domains: ["Process"]
 	"Visual Source Safe":
 		type: "Utility"
@@ -285,6 +307,7 @@ angular.module("about-me").constant("SkillData"
 			2011: 70
 			2013: 75
 			2014: 75
+			2015: 80
 		domains: ["Process"]
 	"git/github":
 		type: "Utility"
@@ -293,6 +316,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 10
 			2013: 20
 			2014: 30
+			2015: 60
 		domains: ["Process"]
 	"Agile/Kanban":
 		type: "Utility"
@@ -304,6 +328,7 @@ angular.module("about-me").constant("SkillData"
 			2012: 75
 			2013: 85
 			2014: 90
+			2015: 90
 		domains: ["Process"]
 )
 
@@ -464,7 +489,6 @@ angular.module("about-me").directive("skillSet"
 			)
 			
 			resizeCharts = ->
-				console.log $(pieChartSelector).width()
 				skillsPieChart
 					.width($(pieChartSelector).width())
 					.height($(pieChartSelector).height())
