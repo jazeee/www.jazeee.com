@@ -18,7 +18,7 @@ try
 		coffee
 		template
 		less
-		jade
+		pug
 		uglify
 		concat
 		angularTemplatecache
@@ -30,7 +30,7 @@ catch error
 	console.error error
 	process.exit(1)
 
-paths = 
+paths =
 	gulpconfig : ["./gulpfile.coffee", "./package.json"]
 	pages: "webapp/pages/**/*.jade"
 	componentPages: "webapp/components/**/*.jade"
@@ -55,7 +55,7 @@ paths =
 	destCoffee: "website/components"
 	destJs: "website/js"
 	destLess: "website/css"
-	
+
 getPath = (pathId) ->
 	paths[pathId] ? throw Error("\nUnknown path ID `#{pathId}`")
 
@@ -80,9 +80,9 @@ logErrors = (stream) ->
 compileCoffee = ->
 	logErrors(coffee(sourceMap: false)).on('error', util.log)
 
-compileJade = ->
-	logErrors(jade({pretty: true}))
-	
+compilePug = ->
+	logErrors(pug({pretty: true}))
+
 compileLess = ->
 	logErrors(less())
 
@@ -92,16 +92,16 @@ reload = ->
 task "html-pages", ->
 	src('pages')
 		.pipe(plumber())
-		.pipe(compileJade())
+		.pipe(compilePug())
 		.pipe(rename(extname: '.html'))
 		.pipe(embedlr())
 		.pipe(dest('destPages'))
 		.pipe(livereload({auto: false}))
-		
+
 task "html-components", ->
 	src('componentPages')
 		.pipe(plumber())
-		.pipe(compileJade())
+		.pipe(compilePug())
 		.pipe(rename(extname: '.html'))
 		.pipe(angularTemplatecache(standalone:true, module: 'webappTemplates'))
 		.pipe(dest('destTemplates'))
@@ -129,13 +129,13 @@ task "js", ->
 		.pipe(plumber())
 		.pipe(concat('static.js'))
 		.pipe(dest('destJs'))
-		
+
 task "start-web-server", ->
 	webServerConfig = ecstatic(
 		root: path.join(__dirname, getPath('dest'))
 		cache: 1
 	)
-	http.createServer(webServerConfig).listen(9000)
+	http.createServer(webServerConfig).listen(3269)
 
 task 'watch', ->
 	gulp.watch(getPath('pages'), ["html-pages"])

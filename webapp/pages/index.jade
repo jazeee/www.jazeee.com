@@ -1,13 +1,13 @@
 doctype
 html(ng-app="webapp")
 	head
-		include partials/header.jade
-		include partials/includes-styles.jade
+		include partials/header.pug
+		include partials/includes-styles.pug
 	body.jaz-site
-		include ../components/navigation/navigation.jade
+		include ../components/navigation/navigation.pug
 		section.main-view(ui-view autoscroll='false')
 		.copyright-disclaimer
 			span Copyright &copy; Jaz Singh. All rights reserved.
 			span Site developed by Jaz Singh
-		include partials/includes.jade
-		include partials/includes-app.jade
+		include partials/includes.pug
+		include partials/includes-app.pug
