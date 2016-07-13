@@ -1,6 +1,10 @@
 .jaz-site {
 	position: relative;
 	padding-top: 52px; /* Account for fixed navbar */
+	.row {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
 }
 
 .padding-top-25 {
@@ -19,8 +23,8 @@
 	width: 100%;
 }
 
-.nav, .pagination, .carousel, .panel-title a { 
-	cursor: pointer; 
+.nav, .pagination, .carousel, .panel-title a {
+	cursor: pointer;
 }
 
 .position-relative {
@@ -55,17 +59,17 @@
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
    @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
         @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
- 
+
 .fade-in(@duration) {
 	opacity:0;  /* make things invisible upon start */
 	-webkit-animation: fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
 	   -moz-animation: fadeIn ease-in 1;
 	        animation: fadeIn ease-in 1;
- 
+
 	-webkit-animation-fill-mode: forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
 	   -moz-animation-fill-mode: forwards;
 	        animation-fill-mode: forwards;
-	
+
 	-webkit-animation-duration: @duration;
 	   -moz-animation-duration: @duration;
 	        animation-duration: @duration;

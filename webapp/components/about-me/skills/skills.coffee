@@ -444,9 +444,7 @@ angular.module("about-me").service("Skills"
 			skillNames = _.keys(@getSkillData(skillType))
 			skillNames = _.sortBy skillNames, (skillName) =>
 				skill = _.find @data, (datum) =>
-					console.log datum
 					datum.name == skillName
-				console.log skill, @getSkillScore skill
 				@getSkillScore skill
 			skillNames.reverse()
 

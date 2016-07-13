@@ -1,0 +1,9 @@
+.projects
+	h2.text-align-center Software Projects
+	.project.container(ng-repeat="project in projects")
+		p.col-xs-10
+			a(href="{{project.url}}") {{project.name}}
+			|  - {{project.description}}
+		p.code-link.col-xs-2
+			i.fa.fa-github-square
+			a(href="{{project.codeLink}}")  Github
