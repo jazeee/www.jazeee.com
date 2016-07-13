@@ -418,6 +418,7 @@ angular.module("about-me").service("Skills"
 						Math.max(memo, year)
 					latestYear)
 					.value()
+				skill.score = @getSkillScore skill
 			@latestYear = latestYear
 			@skillTypes = _.pluck(_.values(SkillData), "type")
 			@skillTypes = _.union(["Language", "Platform", "Database", "Environment", "Source Control", "Project Management"], @skillTypes)
@@ -431,27 +432,32 @@ angular.module("about-me").service("Skills"
 				@skillColors[skillName] = colors[index % colors.length]
 				@skillIndex[skillName] = index
 
-		getSkillData: (skillType) ->
+		getSkillData: (skillType) =>
+			skillData = angular.copy SkillData
 			if skillType?
-				return _.pick(SkillData, (skill)->
+				skillData = _.pick(skillData, (skill)->
 					skill.type == skillType
 				)
-			else
-				return SkillData
+			skillData
 
 		getSkillNames: (skillType)->
-			_.keys(@getSkillData(skillType))
+			skillNames = _.keys(@getSkillData(skillType))
+			skillNames = _.sortBy skillNames, (skillName) =>
+				skill = _.find @data, (datum) =>
+					console.log datum
+					datum.name == skillName
+				console.log skill, @getSkillScore skill
+				@getSkillScore skill
+			skillNames.reverse()
 
-		getSkillYearScore: (year, skillLevel) =>
-			return Math.max(0.5, (year - (@latestYear - 6))) * skillLevel
+		getSkillYearScore: (year, skillLevel, scoreWeight = 1) =>
+			return Math.max(0.5, (year - (@latestYear - 6))) * skillLevel * scoreWeight
 
 		getSkillScore: (skill) =>
 			score = 0
 			for year, skillLevel of skill.experience
-				score += @getSkillYearScore(year, skillLevel)
-			{scoreWeight} = skill
-			scoreWeight ?= 1
-			score *= scoreWeight
+				score += @getSkillYearScore(year, skillLevel, skill.scoreWeight)
+			score
 
 		getDomainSkills: (skillDomain) =>
 			skills = _.filter(@data, (skill)->
@@ -509,7 +515,7 @@ angular.module("about-me").directive("skillSet"
 				skill.skillName
 			)
 			skillsNameGroup = skillsNameDimension.group().reduceSum((skill) ->
-				Skills.getSkillYearScore(skill.year, skill.skillLevel)
+				Skills.getSkillYearScore(skill.year, skill.skillLevel, skill.scoreWeight)
 			)
 			skillsYearDimension = skillsCrossFilter.dimension((skill)->
 				[skill.skillName, skill.year]
