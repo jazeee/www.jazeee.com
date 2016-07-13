@@ -32,8 +32,8 @@ catch error
 
 paths =
 	gulpconfig : ["./gulpfile.coffee", "./package.json"]
-	pages: "webapp/pages/**/*.jade"
-	componentPages: "webapp/components/**/*.jade"
+	pages: "webapp/pages/**/*.pug"
+	componentPages: "webapp/components/**/*.pug"
 	componentsLess: [
 		"webapp/components/**/app.less"
 		"webapp/components/**/*.less"
