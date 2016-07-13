@@ -44,10 +44,14 @@ paths =
 	]
 	js: [
 		"webapp/js/jquery.min.js"
-		"webapp/js/angular.min.js"
 		"webapp/js/d3.min.js"
 		"webapp/js/crossfilter.min.js"
-		"webapp/js/*"
+		"webapp/js/dc.min.js"
+		"webapp/bower_components/underscore/underscore-min.js"
+		"webapp/bower_components/angular/angular.min.js"
+		"webapp/bower_components/angular-ui-router/release/angular-ui-router.min.js"
+		"webapp/bower_components/angular-animate/angular-animate.min.js"
+		"webapp/bower_components/angular-resource/angular-resource.min.js"
 	]
 	dest: "website"
 	destPages: "website"

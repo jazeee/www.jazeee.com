@@ -1,0 +1,25 @@
+{
+  "name": "www.jazeee.com",
+  "homepage": "http://www.jazeee.com",
+  "authors": [
+    "Jaz Singh <jazeee@gmail.com>"
+  ],
+  "description": "Jaz Singh Portfolio site",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.7",
+    "angular-animate": "^1.5.7",
+    "angular-resource": "^1.5.7",
+    "angular-ui-router": "^0.3.1",
+    "underscore": "^1.8.3"
+  }
+}
