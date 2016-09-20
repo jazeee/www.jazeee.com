@@ -174,6 +174,10 @@
   background-repeat: no-repeat;
   background-color: #2f2001;
 }
+.projects {
+  background-color: #fef6e3;
+  padding-top: 10px;
+}
 .skill-set .skill-groups {
   text-align: center;
 }
@@ -197,8 +201,4 @@
 }
 .skill-set .skill-name-panel p i {
   margin: 3px;
-}
-.projects {
-  background-color: #fef6e3;
-  padding-top: 10px;
 }
