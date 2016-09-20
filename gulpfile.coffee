@@ -30,7 +30,7 @@ catch error
 	console.error error
 	process.exit(1)
 
-targetDir = "docs"
+targetDir = "."
 
 paths =
 	gulpconfig : ["./gulpfile.coffee", "./package.json"]
@@ -57,10 +57,10 @@ paths =
 	]
 	dest: targetDir
 	destPages: targetDir
-	destTemplates: "#{targetDir}/templates"
-	destCoffee: "#{targetDir}/components"
-	destJs: "#{targetDir}/js"
-	destLess: "#{targetDir}/css"
+	destTemplates: "#{targetDir}/build/templates"
+	destCoffee: "#{targetDir}/build/components"
+	destJs: "#{targetDir}/build/js"
+	destLess: "#{targetDir}/build/css"
 
 getPath = (pathId) ->
 	paths[pathId] ? throw Error("\nUnknown path ID `#{pathId}`")
