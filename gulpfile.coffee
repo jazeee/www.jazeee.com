@@ -30,6 +30,8 @@ catch error
 	console.error error
 	process.exit(1)
 
+targetDir = "docs"
+
 paths =
 	gulpconfig : ["./gulpfile.coffee", "./package.json"]
 	pages: "webapp/pages/**/*.pug"
@@ -53,12 +55,12 @@ paths =
 		"webapp/bower_components/angular-animate/angular-animate.min.js"
 		"webapp/bower_components/angular-resource/angular-resource.min.js"
 	]
-	dest: "website"
-	destPages: "website"
-	destTemplates: "website/templates"
-	destCoffee: "website/components"
-	destJs: "website/js"
-	destLess: "website/css"
+	dest: targetDir
+	destPages: targetDir
+	destTemplates: "#{targetDir}/templates"
+	destCoffee: "#{targetDir}/components"
+	destJs: "#{targetDir}/js"
+	destLess: "#{targetDir}/css"
 
 getPath = (pathId) ->
 	paths[pathId] ? throw Error("\nUnknown path ID `#{pathId}`")
