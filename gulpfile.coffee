@@ -110,6 +110,7 @@ task "html-components", ->
 		.pipe(compilePug())
 		.pipe(rename(extname: '.html'))
 		.pipe(angularTemplatecache(standalone:true, module: 'webappTemplates'))
+		.pipe(rename(extname: ''))
 		.pipe(dest('destTemplates'))
 		.pipe(livereload({auto: false}))
 
@@ -117,7 +118,7 @@ task "coffee", ->
 	src('coffee')
 		.pipe(plumber())
 		.pipe(compileCoffee())
-		.pipe(concat('app.js'))
+		.pipe(concat('app'))
 		.pipe(dest('destCoffee'))
 		.pipe(livereload({auto: false}))
 
@@ -133,7 +134,7 @@ task "less", ->
 task "js", ->
 	src('js')
 		.pipe(plumber())
-		.pipe(concat('static.js'))
+		.pipe(concat('static'))
 		.pipe(dest('destJs'))
 
 task "start-web-server", ->
