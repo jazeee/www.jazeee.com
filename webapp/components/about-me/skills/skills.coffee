@@ -26,6 +26,9 @@ angular.module("about-me").constant("SkillData"
 			2005: 0
 			2007: 10
 			2008: 15
+			2009: 15
+			2010: 15
+			2011: 20
 			2012: 30
 			2013: 60
 			2014: 85
@@ -465,7 +468,7 @@ angular.module("about-me").service("Skills"
 	class Skills
 		constructor: ->
 			@data = []
-			latestYear = 2005
+			latestYear = 2010
 			for name, skill of SkillData
 				@data.push(_.extend({}, {name}, skill))
 				latestYear = _(_.keys(skill.experience)).chain()
@@ -560,7 +563,7 @@ angular.module("about-me").directive("skillSet"
 		compile: (element, attributes) ->
 			skills = Skills.getSkills()
 			yearExtent = d3.extent(skills, (skill) -> skill.year)
-			yearExtent[0] = Math.max(2005, yearExtent[0])
+			yearExtent[0] = Math.max(2010, yearExtent[0])
 			latestYear = yearExtent[1]
 			skillsCrossFilter = crossfilter(skills)
 			typeDimension = skillsCrossFilter.dimension((skill)->skill.type)
