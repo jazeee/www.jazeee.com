@@ -31,6 +31,8 @@ angular.module("about-me").constant("SkillData"
 			2014: 85
 			2015: 90
 			2016: 90
+			2017: 90
+			2018: 90
 		domains: ["WebApp", "Server"]
 		scoreWeight: 2
 	"ES2015":
@@ -39,6 +41,8 @@ angular.module("about-me").constant("SkillData"
 			2014: 0
 			2015: 30
 			2016: 40
+			2017: 80
+			2018: 90
 		domains: ["WebApp", "Server"]
 		scoreWeight: 1.3
 	"CoffeeScript":
@@ -49,6 +53,7 @@ angular.module("about-me").constant("SkillData"
 			2014: 85
 			2015: 95
 			2016: 95
+			2017: 0
 		domains: ["WebApp", "Server"]
 		scoreWeight: 3
 	"Meteor.js":
@@ -58,6 +63,8 @@ angular.module("about-me").constant("SkillData"
 			2014: 40
 			2015: 70
 			2016: 85
+			2017: 65
+			2018: 70
 		domains: ["WebApp", "Server"]
 		scoreWeight: 2
 	"Node.js":
@@ -69,6 +76,8 @@ angular.module("about-me").constant("SkillData"
 			2014: 40
 			2015: 60
 			2016: 75
+			2017: 75
+			2018: 75
 		domains: ["WebApp", "Server"]
 		scoreWeight: 2
 	"AngularJS 1.5":
@@ -79,6 +88,7 @@ angular.module("about-me").constant("SkillData"
 			2014: 80
 			2015: 80
 			2016: 90
+			2017: 0
 		domains: ["WebApp"]
 		scoreWeight: 2
 	"AngularJS 2.0":
@@ -87,6 +97,8 @@ angular.module("about-me").constant("SkillData"
 			2014: 0
 			2015: 10
 			2016: 20
+			2017: 20
+			2018: 10
 		domains: ["WebApp"]
 	"Bootstrap":
 		type: "Platform"
@@ -96,6 +108,15 @@ angular.module("about-me").constant("SkillData"
 			2014: 80
 			2015: 85
 			2016: 90
+			2017: 90
+			2018: 60
+		domains: ["WebApp"]
+	"Material":
+		type: "Platform"
+		experience:
+			2017: 0
+			2017: 20
+			2018: 70
 		domains: ["WebApp"]
 	"D3.js":
 		type: "Platform"
@@ -105,6 +126,8 @@ angular.module("about-me").constant("SkillData"
 			2014: 75
 			2015: 80
 			2016: 80
+			2017: 70
+			2018: 60
 		domains: ["WebApp"]
 		scoreWeight: 2
 	"JQuery":
@@ -117,8 +140,10 @@ angular.module("about-me").constant("SkillData"
 			2014: 50
 			2015: 70
 			2016: 70
+			2017: 40
+			2018: 20
 		domains: ["WebApp"]
-	"Jade/Pug/Less":
+	"Jade/Pug":
 		type: "Language"
 		experience:
 			2012: 0
@@ -126,8 +151,9 @@ angular.module("about-me").constant("SkillData"
 			2014: 100
 			2015: 100
 			2016: 100
+			2017: 0
 		domains: ["WebApp"]
-	"HTML/CSS":
+	"HTML/CSS/Sass/Less":
 		type: "Language"
 		experience:
 			2005: 0
@@ -139,6 +165,8 @@ angular.module("about-me").constant("SkillData"
 			2014: 75
 			2015: 85
 			2016: 90
+			2017: 90
+			2018: 90
 		domains: ["WebApp"]
 	"Java":
 		type: "Language"
@@ -153,6 +181,8 @@ angular.module("about-me").constant("SkillData"
 			2014: 85
 			2015: 85
 			2016: 85
+			2017: 75
+			2018: 70
 		domains: ["WebApp", "Server", "Android"]
 	"Spring":
 		type: "Platform"
@@ -164,6 +194,7 @@ angular.module("about-me").constant("SkillData"
 			2014: 50
 			2015: 60
 			2016: 60
+			2017: 0
 		domains: ["Server"]
 	"Python":
 		type: "Language"
@@ -174,7 +205,9 @@ angular.module("about-me").constant("SkillData"
 			2014: 40
 			2015: 50
 			2016: 50
-		domains: ["Server", "Source Control"]
+			2017: 60
+			2018: 60
+		domains: ["Server"]
 	"c++":
 		type: "Language"
 		experience:
@@ -192,7 +225,9 @@ angular.module("about-me").constant("SkillData"
 			2014: 75
 			2015: 70
 			2016: 60
-		domains: ["Source Control"]
+			2017: 50
+			2018: 50
+		domains: ["Server"]
 	"STL":
 		type: "Platform"
 		experience:
@@ -207,7 +242,9 @@ angular.module("about-me").constant("SkillData"
 			2014: 40
 			2015: 40
 			2016: 30
-		domains: ["Source Control"]
+			2017: 30
+			2018: 30
+		domains: ["Server"]
 	"VC++":
 		type: "Language"
 		experience:
@@ -233,6 +270,8 @@ angular.module("about-me").constant("SkillData"
 			2014: 20
 			2015: 45
 			2016: 60
+			2017: 60
+			2018: 60
 		domains: ["Server"]
 	"Postgresql":
 		type: "Database"
@@ -243,6 +282,8 @@ angular.module("about-me").constant("SkillData"
 			2014: 60
 			2015: 70
 			2016: 85
+			2017: 65
+			2018: 45
 		domains: ["Server"]
 	"MySQL":
 		type: "Database"
@@ -256,6 +297,8 @@ angular.module("about-me").constant("SkillData"
 			2014: 50
 			2015: 50
 			2016: 40
+			2017: 60
+			2018: 80
 		domains: ["Server"]
 	"Linux":
 		type: "Environment"
@@ -273,6 +316,8 @@ angular.module("about-me").constant("SkillData"
 			2014: 90
 			2015: 90
 			2016: 90
+			2017: 90
+			2018: 90
 		domains: ["Server", "Linux"]
 	"Windows":
 		type: "Environment"
@@ -293,6 +338,8 @@ angular.module("about-me").constant("SkillData"
 			2014: 50
 			2015: 45
 			2016: 45
+			2017: 30
+			2018: 30
 		domains: ["Windows"]
 	"git/github/BitBucket":
 		type: "Source Control"
@@ -303,6 +350,8 @@ angular.module("about-me").constant("SkillData"
 			2014: 30
 			2015: 60
 			2016: 80
+			2017: 80
+			2018: 80
 		domains: ["Process"]
 	"subversion (svn)":
 		type: "Source Control"
@@ -317,6 +366,7 @@ angular.module("about-me").constant("SkillData"
 			2014: 75
 			2015: 80
 			2016: 70
+			2017: 0
 		domains: ["Process"]
 	"cvs":
 		type: "Source Control"
@@ -359,8 +409,10 @@ angular.module("about-me").constant("SkillData"
 			2014: 95
 			2015: 95
 			2016: 95
+			2017: 95
+			2018: 95
 		domains: ["Process"]
-	"Atlassian (Jira, Confluence)":
+	"Atlassian, Phabricator, Arcanist":
 		type: "Project Management"
 		experience:
 			2007: 0
@@ -373,6 +425,8 @@ angular.module("about-me").constant("SkillData"
 			2014: 85
 			2015: 85
 			2016: 90
+			2017: 90
+			2018: 90
 		domains: ["Process"]
 	"Agile/Kanban":
 		type: "Project Management"
@@ -386,6 +440,8 @@ angular.module("about-me").constant("SkillData"
 			2014: 90
 			2015: 90
 			2016: 90
+			2017: 90
+			2018: 90
 		domains: ["Process"]
 	"Bugzilla":
 		type: "Project Management"
