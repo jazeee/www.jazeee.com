@@ -37,7 +37,7 @@ angular.module("about-me").constant("SkillData"
 			2017: 90
 			2018: 90
 		domains: ["WebApp", "Server"]
-		scoreWeight: 2
+		scoreWeight: 3
 	"ES2015":
 		type: "Language"
 		experience:
@@ -47,7 +47,7 @@ angular.module("about-me").constant("SkillData"
 			2017: 80
 			2018: 90
 		domains: ["WebApp", "Server"]
-		scoreWeight: 1.3
+		scoreWeight: 2
 	"CoffeeScript":
 		type: "Language"
 		experience:
@@ -58,7 +58,7 @@ angular.module("about-me").constant("SkillData"
 			2016: 95
 			2017: 0
 		domains: ["WebApp", "Server"]
-		scoreWeight: 3
+		scoreWeight: 1
 	"Meteor.js":
 		type: "Platform"
 		experience:
@@ -69,7 +69,7 @@ angular.module("about-me").constant("SkillData"
 			2017: 65
 			2018: 70
 		domains: ["WebApp", "Server"]
-		scoreWeight: 2
+		scoreWeight: 1.5
 	"Node.js":
 		type: "Platform"
 		experience:
@@ -83,6 +83,16 @@ angular.module("about-me").constant("SkillData"
 			2018: 75
 		domains: ["WebApp", "Server"]
 		scoreWeight: 2
+	"React":
+		type: "Platform"
+		experience:
+			2014: 0
+			2015: 10
+			2016: 60
+			2017: 80
+			2018: 80
+		domains: ["WebApp"]
+		scoreWeight: 2
 	"AngularJS 1.5":
 		type: "Platform"
 		experience:
@@ -93,7 +103,6 @@ angular.module("about-me").constant("SkillData"
 			2016: 90
 			2017: 0
 		domains: ["WebApp"]
-		scoreWeight: 2
 	"AngularJS 2.0":
 		type: "Platform"
 		experience:
@@ -114,10 +123,10 @@ angular.module("about-me").constant("SkillData"
 			2017: 90
 			2018: 60
 		domains: ["WebApp"]
-	"Material":
+	"Material-UI":
 		type: "Platform"
 		experience:
-			2017: 0
+			2016: 0
 			2017: 20
 			2018: 70
 		domains: ["WebApp"]
